@@ -19,5 +19,7 @@
   "contact_us": "Contact Us",
   "share_app": "share App",
   "rate_app": "Rate App",
-  "logout": "LogOut"
+  "logout": "LogOut",
+  "waiting": "Waiting",
+  "confirmed": "Confirmed"
 }

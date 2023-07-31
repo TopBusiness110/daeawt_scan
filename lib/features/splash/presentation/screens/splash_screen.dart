@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/models/user_model.dart';
+import '../../../../core/preferences/preferences.dart';
 import '../../../../core/utils/assets_manager.dart';
-import '../../../../preferences/preferences.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -37,8 +37,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _getStoreUser() async {
-    UserModel userModel = await Preferences.instance.getUserModel();
-    if (userModel.data != null) {
+    SingleUserDataModel userModel = await Preferences.instance.getUserModel();
+    if (userModel.userModel != null) {
       Navigator.pushNamedAndRemoveUntil(
         context,
         Routes.homeRoute,

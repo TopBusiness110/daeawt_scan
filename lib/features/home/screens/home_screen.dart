@@ -1,4 +1,3 @@
-
 import 'package:flutter/services.dart';
 
 import '../../../../core/widgets/network_image.dart';
@@ -15,10 +14,10 @@ import '../cubit/home_cubit.dart';
 
 
 class HomeScreen extends StatefulWidget {
- // final InvitationModel homeListItemModel;
+  // final InvitationModel homeListItemModel;
 
   const HomeScreen({Key? key,
-   // required this.homeListItemModel
+    // required this.homeListItemModel
   })
       : super(key: key);
 
@@ -30,14 +29,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     var languageCode = easy.EasyLocalization
         .of(context)!
         .locale
         .languageCode;
     return Scaffold(
       body: Column(
-      //  physics: const AlwaysScrollableScrollPhysics(),
+        //  physics: const AlwaysScrollableScrollPhysics(),
         children: [
           ClipPath(
             clipper: SmallBottomCurveClipper(),
@@ -70,9 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   IconButton(
                       padding: EdgeInsets.zero,
                       onPressed: () {
-                       Navigator.pushNamed(context, Routes.profileRoute);
+                        Navigator.pushNamed(context, Routes.profileRoute);
                       },
-                      icon: Icon(Icons.person_2_outlined,color: Colors.white,)),
+                      icon: Icon(
+                        Icons.person_2_outlined, color: Colors.white,)),
                 ],
               ),
             ),
@@ -111,21 +110,23 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-        const SizedBox(height: 10,),
+          const SizedBox(height: 10,),
 
-              BlocBuilder<HomeCubit, HomeState>(
-                builder: (context, state) {
-                  HomeCubit cubit = context.read<HomeCubit>();
-                  if (state is HomeLoading) {
-                    return const ShowLoadingIndicator();
-                  } else {
-                    return Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        SizedBox(
+          BlocBuilder<HomeCubit, HomeState>(
+            builder: (context, state) {
+              HomeCubit cubit = context.read<HomeCubit>();
+              if (state is HomeLoading) {
+                return const ShowLoadingIndicator();
+              } else {
+                return Expanded(
+                  child: Column(
+                    children: [
+                      Expanded(
 
-                          height: MediaQuery.of(context).size.height*0.73,
 
+
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: GridView.builder(
                             shrinkWrap: true,
                             physics: const AlwaysScrollableScrollPhysics(),
@@ -143,100 +144,110 @@ class _HomeScreenState extends State<HomeScreen> {
                             itemBuilder: (context, index) {
                               return InkWell(
                                 onTap: () {
-                                  // if (index == 1) {
-                                  //   Navigator.pushNamed(
-                                  //       context, Routes.invitedRoute,
-                                  //       arguments: widget.homeListItemModel);
-                                  // } else if (index == 0) {
-                                  //   Navigator.pushNamed(
-                                  //       context, Routes.messagesRoute,
-                                  //       arguments: widget.homeListItemModel);
-                                  // } else if (index == 2) {
-                                  //   Navigator.pushNamed(
-                                  //       context, Routes.scannedRoute,
-                                  //       arguments: widget.homeListItemModel);
-                                  // } else if (index == 3) {
-                                  //   Navigator.pushNamed(
-                                  //       context, Routes.confirmedRoute,
-                                  //       arguments: widget.homeListItemModel);
-                                  // } else if (index == 5) {
-                                  //   Navigator.pushNamed(
-                                  //       context, Routes.waitingRoute,
-                                  //       arguments: widget.homeListItemModel);
-                                  // } else if (index == 4) {
-                                  //   Navigator.pushNamed(
-                                  //       context, Routes.apologyRoute,
-                                  //       arguments: widget.homeListItemModel);
-                                  // } else if (index == 7) {
-                                  //   Navigator.pushNamed(
-                                  //       context, Routes.failedRoute,
-                                  //       arguments: widget.homeListItemModel);
-                                  // } else if (index == 6) {
-                                  //   Navigator.pushNamed(
-                                  //       context, Routes.notSentRoute,
-                                  //       arguments: widget.homeListItemModel);
-                                  // }
+                                  if (index == 1) {
+                                    Navigator.pushNamed(
+                                        context, Routes.invitedRoute,
+                                        arguments: cubit.userDataModel!.invitationModel);
+                                  } else if (index == 0) {
+                                    Navigator.pushNamed(
+                                        context, Routes.messagesRoute,
+                                        arguments: cubit.userDataModel!.invitationModel);
+                                  } else if (index == 2) {
+                                    Navigator.pushNamed(
+                                        context, Routes.scannedRoute,
+                                        arguments:  [cubit.userDataModel!.invitationModel,1]);
+                                  } else if (index == 3) {
+                                    Navigator.pushNamed(
+                                        context, Routes.confirmedRoute,
+                                        arguments:  cubit.userDataModel!.invitationModel);
+                                  } else if (index == 5) {
+                                    Navigator.pushNamed(
+                                        context, Routes.waitingRoute,
+                                        arguments:  cubit.userDataModel!.invitationModel);
+                                  } else if (index == 4) {
+                                    Navigator.pushNamed(
+                                        context, Routes.apologyRoute,
+                                        arguments:  cubit.userDataModel!.invitationModel);
+                                  } else if (index == 7) {
+                                    Navigator.pushNamed(
+                                        context, Routes.failedRoute,
+                                        arguments:  cubit.userDataModel!.invitationModel);
+                                  } else if (index == 6) {
+                                    Navigator.pushNamed(
+                                        context, Routes.notSentRoute,
+                                        arguments:  cubit.userDataModel!.invitationModel);
+                                  }
                                 },
-                                child: Material(
-                                  elevation: 10,
-                                  shadowColor: Colors.black.withOpacity(0.7),
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      MySvgWidget(
-                                          path: cubit.detailsIconsList[index],
-                                          size: 65),
-                                      //  const SizedBox(height: 10,),
-                                      const Text("1",
-                                       // cubit.detailsdata[index],
+                                child: Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: Material(
+                                    elevation: 10,
+                                    shadowColor: Colors.black.withOpacity(0.7),
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                    MySvgWidget(
+                                    path: cubit.detailsIconsList[index],
+                                        size: 65),
+                                    //  const SizedBox(height: 10,),
+                                     Text(cubit.detailsdata[index],
+
+                                        // cubit.detailsdata[index],
                                         style: TextStyle(
-                                            color: AppColors.black1,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      Text(
-                                        cubit.detailsLabels[index],
-                                        style: const TextStyle(
-                                            color: AppColors.grey5,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500),
-                                      ).tr(),
-                                    ],
+                                        color: AppColors.black1,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500),
                                   ),
-                                ),
+                                  Text(
+                                    cubit.detailsLabels[index],
+                                    style: const TextStyle(
+                                        color: AppColors.grey5,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500),
+                                  ).tr(),
+                                  ],
+                              ),),
+                                )
+                              ,
                               );
                             },
                           ),
                         ),
-                        //اضافة مدعوين
-                        ElevatedButton(
-                          onPressed: () {
-                           // _scan();//todo-->
-                         Navigator.pushNamed(context, Routes.scannedRoute);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.black1,
-                            minimumSize:
-                            Size(MediaQuery.of(context).size.width * 0.85, 60),
-                          ),
-                          child: Text(
-                            AppStrings.scanned.tr(),
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 18),
-                          ),
+                      ),
+                      SizedBox(height: 20,),
+                      //اضافة مدعوين
+                      ElevatedButton(
+                        onPressed: () {
+                          // _scan();//todo-->
+                          Navigator.pushNamed(context, Routes.scanRoute);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.black1,
+                          minimumSize:
+                          Size(MediaQuery
+                              .of(context)
+                              .size
+                              .width * 0.85, 60),
                         ),
+                        child: Text(
+                          AppStrings.scanned.tr(),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 18),
+                        ),
+                      ),
+                      SizedBox(height: 20,),
 
-                      ],
-                    );
-                  }
-                },
-              ),
-
+                    ],
+                  ),
+                );
+              }
+            },
+          ),
 
 
         ],
@@ -346,7 +357,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //                                         context
     //                                             .read<AddInvitationCubit>()
     //                                             .setData(
-    //                                             widget.homeListItemModel);
+    //                                              cubit.userDataModel!.invitationModel);
     //                                         Navigator.pushNamed(context,
     //                                             Routes.addInvitationRoute);
     //                                       },
@@ -455,7 +466,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //                                   Navigator.pop(context);
     //                                   Navigator.pushNamed(
     //                                       context, Routes.reminderRoute,
-    //                                       arguments: widget.homeListItemModel);
+    //                                       arguments:  cubit.userDataModel!.invitationModel);
     //                                 },
     //                                 child: const Text(
     //                                   AppStrings.sendReminder,
@@ -515,35 +526,35 @@ class _HomeScreenState extends State<HomeScreen> {
     //                                   if (index == 1) {
     //                                     Navigator.pushNamed(
     //                                         context, Routes.invitedRoute,
-    //                                         arguments: widget.homeListItemModel);
+    //                                         arguments:  cubit.userDataModel!.invitationModel);
     //                                   } else if (index == 0) {
     //                                     Navigator.pushNamed(
     //                                         context, Routes.messagesRoute,
-    //                                         arguments: widget.homeListItemModel);
+    //                                         arguments:  cubit.userDataModel!.invitationModel);
     //                                   } else if (index == 2) {
     //                                     Navigator.pushNamed(
     //                                         context, Routes.scannedRoute,
-    //                                         arguments: widget.homeListItemModel);
+    //                                         arguments:  cubit.userDataModel!.invitationModel);
     //                                   } else if (index == 3) {
     //                                     Navigator.pushNamed(
     //                                         context, Routes.confirmedRoute,
-    //                                         arguments: widget.homeListItemModel);
+    //                                         arguments:  cubit.userDataModel!.invitationModel);
     //                                   } else if (index == 5) {
     //                                     Navigator.pushNamed(
     //                                         context, Routes.waitingRoute,
-    //                                         arguments: widget.homeListItemModel);
+    //                                         arguments:  cubit.userDataModel!.invitationModel);
     //                                   } else if (index == 4) {
     //                                     Navigator.pushNamed(
     //                                         context, Routes.apologyRoute,
-    //                                         arguments: widget.homeListItemModel);
+    //                                         arguments:  cubit.userDataModel!.invitationModel);
     //                                   } else if (index == 7) {
     //                                     Navigator.pushNamed(
     //                                         context, Routes.failedRoute,
-    //                                         arguments: widget.homeListItemModel);
+    //                                         arguments:  cubit.userDataModel!.invitationModel);
     //                                   } else if (index == 6) {
     //                                     Navigator.pushNamed(
     //                                         context, Routes.notSentRoute,
-    //                                         arguments: widget.homeListItemModel);
+    //                                         arguments:  cubit.userDataModel!.invitationModel);
     //                                   }
     //                                 },
     //                                 child: Material(
@@ -587,7 +598,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //                 ElevatedButton(
     //                   onPressed: () {
     //                     Navigator.pushNamed(context, Routes.addPersonRoute,
-    //                         arguments: widget.homeListItemModel);
+    //                         arguments:  cubit.userDataModel!.invitationModel);
     //                   },
     //                   style: ElevatedButton.styleFrom(
     //                     backgroundColor: AppColors.black1,
@@ -651,10 +662,10 @@ class _HomeScreenState extends State<HomeScreen> {
     //                           Center(
     //                             child: SizedBox(
     //                               width: MediaQuery.of(context).size.width * 0.75,
-    //                               child: widget.homeListItemModel.image.isNotEmpty
+    //                               child:  cubit.userDataModel!.invitationModel.image.isNotEmpty
     //                                   ? ManageNetworkImage(
     //                                 imageUrl:
-    //                                 widget.homeListItemModel.image,
+    //                                  cubit.userDataModel!.invitationModel.image,
     //                               )
     //                                   : Image.asset(ImageAssests.homeItem),
     //                             ),
@@ -666,7 +677,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
     //                             children: [
     //                               Text(
-    //                                 widget.homeListItemModel.date,
+    //                                  cubit.userDataModel!.invitationModel.date,
     //                                 style: const TextStyle(
     //                                     fontSize: 16,
     //                                     fontWeight: FontWeight.w400),
@@ -680,26 +691,26 @@ class _HomeScreenState extends State<HomeScreen> {
     //                                       horizontal: 10, vertical: 6),
     //                                   decoration: BoxDecoration(
     //                                       color:
-    //                                       widget.homeListItemModel.status ==
+    //                                        cubit.userDataModel!.invitationModel.status ==
     //                                           "0"
     //                                           ? AppColors.grey1
     //                                           : AppColors.lightGreen,
     //                                       borderRadius:
     //                                       BorderRadius.circular(10)),
     //                                   child: Text(
-    //                                     widget.homeListItemModel.status == "0"
+    //                                      cubit.userDataModel!.invitationModel.status == "0"
     //                                         ? "not_confirmed".tr()
     //                                         : "confirmed".tr(), //مؤكد
     //                                     style: TextStyle(
     //                                         color:
-    //                                         widget.homeListItemModel.status ==
+    //                                          cubit.userDataModel!.invitationModel.status ==
     //                                             "0"
     //                                             ? AppColors.black1
     //                                             : AppColors.green1),
     //                                   )),
     //                             ],
     //                           ),
-    //                           Text(widget.homeListItemModel.title,
+    //                           Text( cubit.userDataModel!.invitationModel.title,
     //                               style: const TextStyle(
     //                                   fontSize: 18, fontWeight: FontWeight.w700)),
     //                           const SizedBox(
@@ -711,7 +722,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //                                 Icons.location_on_outlined,
     //                                 color: AppColors.primary,
     //                               ),
-    //                               Text(widget.homeListItemModel.address,
+    //                               Text( cubit.userDataModel!.invitationModel.address,
     //                                   style: const TextStyle(
     //                                       fontSize: 14,
     //                                       fontWeight: FontWeight.w400))
@@ -743,7 +754,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //           AppStrings.areYouSureDeleteOccasion,
     //           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
     //         ).tr(),
-    //         content: Text(widget.homeListItemModel.title,
+    //         content: Text( cubit.userDataModel!.invitationModel.title,
     //             textAlign: TextAlign.center,
     //             style:
     //             const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
@@ -788,41 +799,41 @@ class _HomeScreenState extends State<HomeScreen> {
     // @override
     // void initState() {
     //   super.initState();
-    //   context.read<DetailsCubit>().setdata(widget.homeListItemModel);
+    //   context.read<DetailsCubit>().setdata( cubit.userDataModel!.invitationModel);
     // }
   }
-  // Future<void> _scan() async {
-  //   try {
-  //     final result = await BarcodeScanner.scan(
-  //
-  //       options: ScanOptions(
-  //
-  //         strings: {
-  //           'cancel': "Cancel",
-  //           'flash_on': "Flash on",
-  //           'flash_off': "Flash off",
-  //         },
-  //         restrictFormat: selectedFormats,
-  //         useCamera: _selectedCamera,
-  //         autoEnableFlash: false,
-  //
-  //         android: AndroidOptions(
-  //
-  //           aspectTolerance: 0.04,
-  //           useAutoFocus: true,
-  //         ),
-  //       ),
-  //     );
-  //     setState(() => scanResult = result as ScanResult?);
-  //   } on PlatformException catch (e) {
-  //     setState(() {
-  //       scanResult = ScanResult(
-  //         type: ResultType.Error,
-  //         rawContent: e.code == BarcodeScanner.cameraAccessDenied
-  //             ? 'The user did not grant the camera permission!'
-  //             : 'Unknown error: $e',
-  //       );
-  //     });
-  //   }
-  // }
+// Future<void> _scan() async {
+//   try {
+//     final result = await BarcodeScanner.scan(
+//
+//       options: ScanOptions(
+//
+//         strings: {
+//           'cancel': "Cancel",
+//           'flash_on': "Flash on",
+//           'flash_off': "Flash off",
+//         },
+//         restrictFormat: selectedFormats,
+//         useCamera: _selectedCamera,
+//         autoEnableFlash: false,
+//
+//         android: AndroidOptions(
+//
+//           aspectTolerance: 0.04,
+//           useAutoFocus: true,
+//         ),
+//       ),
+//     );
+//     setState(() => scanResult = result as ScanResult?);
+//   } on PlatformException catch (e) {
+//     setState(() {
+//       scanResult = ScanResult(
+//         type: ResultType.Error,
+//         rawContent: e.code == BarcodeScanner.cameraAccessDenied
+//             ? 'The user did not grant the camera permission!'
+//             : 'Unknown error: $e',
+//       );
+//     });
+//   }
+// }
 }

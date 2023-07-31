@@ -36,7 +36,8 @@ class _LoginScreenState extends State<LoginScreen> {
       child: BlocBuilder<LoginCubit, LoginState>(
         builder: (context, state) {
           return Scaffold(
-            body: SingleChildScrollView(
+            body:
+            SingleChildScrollView(
               child: Column(
                 children: [
                   SizedBox(
@@ -147,7 +148,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, Routes.homeRoute);
+                      if(formKey.currentState!.validate()){
+                      cubit.login(context);}
+                   //   Navigator.pushNamed(context, Routes.homeRoute);
                     },
                       child: MyButton(label: AppStrings.login.tr())),
                   const SizedBox(

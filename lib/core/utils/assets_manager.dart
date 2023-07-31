@@ -16,6 +16,7 @@ class ImageAssests{
   static const String waitingIcon = "$iconsPath/waiting_icon.svg";
   static const String notSentIcon = "$iconsPath/not_sent_icon.svg";
   static const String failedIcon = "$iconsPath/failed_icon.svg";
+  static const String shareIcon = "$iconsPath/share_icon.svg";
 
   static const String languageIcon = "$iconsPath/language_icon.png";
   static const String contactUsIcon = "$iconsPath/contact_us_icon.png";

@@ -45,6 +45,8 @@ dependencies:
   firebase_core: ^2.15.0
   firebase_auth: ^4.7.2
   flutter_phoenix: ^1.1.1
+  dartz: ^0.10.1
+  modal_bottom_sheet: ^2.1.2
   flutter_windowmanager: ^0.2.0
   flutter_bloc: ^8.1.2
   fluttertoast: ^8.2.1
@@ -53,7 +55,8 @@ dependencies:
   cached_network_image: ^3.2.3
   sizer:
   mobile_scanner: ^3.3.0
-
+dependency_overrides:
+  modal_bottom_sheet: ^3.0.0-pre
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../core/models/user_model.dart';
-import '../core/utils/app_strings.dart';
+import '../models/user_model.dart';
+import '../utils/app_colors.dart';
+import '../utils/app_strings.dart';
 
 class Preferences {
   static final Preferences instance = Preferences._internal();
@@ -83,27 +83,27 @@ class Preferences {
     }
   }
 
-  Future<void> setUser(UserModel userModel) async {
+  Future<void> setUser(SingleUserDataModel userModel) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString(
       'user',
       jsonEncode(
-        UserModel.fromJson(
+        SingleUserDataModel.fromJson(
           userModel.toJson(),
         ),
       ),
     );
   }
 
-  Future<UserModel> getUserModel() async {
+  Future<SingleUserDataModel> getUserModel() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String? jsonData = preferences.getString('user');
-    UserModel userModel;
+    SingleUserDataModel userModel;
     if (jsonData != null) {
-      userModel = UserModel.fromJson(jsonDecode(jsonData));
+      userModel = SingleUserDataModel.fromJson(jsonDecode(jsonData));
       // userModel.data?.isLoggedIn = true;
     } else {
-      userModel = UserModel();
+      userModel = SingleUserDataModel();
     }
     return userModel;
   }

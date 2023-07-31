@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../config/routes/app_routes.dart';
+import '../../../core/preferences/preferences.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/utils/assets_manager.dart';
 import '../../../core/widgets/manage_circle_network_image.dart';
 import '../../../core/widgets/my_svg_widget.dart';
-import '../../../preferences/preferences.dart';
 import '../cubit/profile_cubit.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -162,8 +162,8 @@ class ProfileScreen extends StatelessWidget {
                             color: Colors.white,
                             shape: BoxShape.circle,
                             border: Border.all(color: AppColors.grey3, width: 3)),
-                        child:cubit.userModel==null||cubit.userModel!.data!.user!.image.isEmpty? Image.asset(ImageAssests.profileImage):
-                        ManageCircleNetworkImage(imageUrl: cubit.userModel!.data!.user!.image,
+                        child:cubit.userModel==null||cubit.userModel!.user!.image.isEmpty? Image.asset(ImageAssests.profileImage):
+                        ManageCircleNetworkImage(imageUrl: cubit.userModel!.user!.image,
                           height: 90,
                           width: 90,
                         ),
@@ -178,14 +178,14 @@ class ProfileScreen extends StatelessWidget {
 
                   Center(
                     child:  Text(
-                      cubit.userModel!=null?cubit.userModel!.data!.user!.name:'',
+                      cubit.userModel!=null?cubit.userModel!.user!.name:'',
                       style: TextStyle(
                           fontWeight: FontWeight.w700, fontSize: 18),
                     ),
                   ),
                   Center(
                     child:  Text(
-                      cubit.userModel!=null?cubit.userModel!.data!.user!.phone:'',
+                      cubit.userModel!=null?cubit.userModel!.user!.phone:'',
                       style: TextStyle(
                           fontWeight: FontWeight.w400, fontSize: 18),
                     ),
