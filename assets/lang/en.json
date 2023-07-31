@@ -1,0 +1,23 @@
+{
+"askan_dawat": "ASKAN DAEAWT",
+  "login_to_create_invitation": "Sign in to be able to create your invitations",
+  "login": "Login",
+  "logIn": "Login",
+  "email": "Email",
+  "password": "Password",
+  "the_message": "The Message",
+  "the_messages": "The Messages",
+  "invited": "Invited",
+  "scanned": "Scanned",
+  "confirmation": "Confirmation",
+  "apologies": "Apologies",
+  "wait": "Wait",
+  "not_sent": "Not Sent",
+  "failed": "Failed",
+  "my_account": "My Account",
+  "language": "Language",
+  "contact_us": "Contact Us",
+  "share_app": "share App",
+  "rate_app": "Rate App",
+  "logout": "LogOut"
+}

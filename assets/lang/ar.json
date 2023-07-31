@@ -1,0 +1,23 @@
+{
+  "askan_dawat": "سكان دعوات",
+  "login_to_create_invitation": " سجل الدخول للتمكن من انشاء دعواتك",
+  "login": "تسجيل الدخول",
+  "logIn": "سجل دخول",
+  "email": "البريد الالكترونى",
+  "password": "كلمة المرور",
+  "the_message": "الرسالة",
+  "the_messages": "الرسائل",
+  "invited": "المدعوين",
+  "scanned": "الممسوح ضوئيا",
+  "confirmation": "التأكيد",
+  "apologies": "الاعتذار",
+  "wait": "الانتظار",
+  "not_sent": "لم يتم الارسال",
+  "failed": "فشل",
+  "my_account": "حسابى",
+  "language": "اللغة",
+  "contact_us": "تواصل معنا",
+  "share_app": "شارك التطبيق",
+  "rate_app": "قيم التطبيق",
+  "logout": "تسجيل الخروج"
+}
