@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   Spacer(),
                    Text(
-                    cubit.userDataModel!.invitationModel!.title,
+                     cubit.userDataModel!=null? cubit.userDataModel!.invitationModel!.title:"",
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
@@ -88,12 +88,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 Stack(
                   alignment: Alignment.centerRight,
                   children: [
-                    const CircleAvatar(
-                      radius: 20,
-                      backgroundColor: AppColors.primary,
+                    Positioned(
+
+                      child: const CircleAvatar(
+                        radius: 20,
+                        backgroundColor: AppColors.primary,
+                      ),
+                      left: languageCode=='en'?4:null,
+                      right: languageCode=='ar'?4:null,
                     ),
-                    const Text(
-                      "تقرير الحضور",
+                     Text(
+                      "report".tr(),
                       style: TextStyle(
                           fontSize: 20, fontWeight: FontWeight.w700),
                     ).tr(),

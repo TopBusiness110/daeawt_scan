@@ -50,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           // alignment: Alignment.bottomCenter,
           children: [
-            const SizedBox(height: 100,),
+            const SizedBox(height: 20,),
 
             Center(
               child: SizedBox(
@@ -69,17 +69,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             fontSize: 12,
                             fontWeight: FontWeight.w700),
                       ).tr(),
-                      Transform.rotate(
-                        angle:languageCode=="ar"?0:(3.14) ,
-                        child: IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                              size: 35,
-                            )),)
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                            size: 35,
+                          ))
                     ],
                   ),
                 ),
@@ -87,7 +85,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             Container(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height* 0.85,
+              height: MediaQuery.of(context).size.height* 0.97,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
