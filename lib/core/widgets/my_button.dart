@@ -16,7 +16,7 @@ class MyButton extends StatelessWidget {
 
       ),
       child:Text( label,
-          style: const TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w700)
+          style: const TextStyle(color: Colors.white,fontSize: 14,fontWeight: FontWeight.w700)
       ),
     );
   }

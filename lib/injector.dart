@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'features/apology/cubit/appology_cubit.dart';
 import 'features/confirmed/cubit/confirmed_cubit.dart';
+import 'features/contact_us/presentation/cubit/contact_us_cubit.dart';
 import 'features/failed/presentation/cubit/faild_cubit.dart';
 import 'features/home/cubit/home_cubit.dart';
 import 'features/invited/presentation/cubit/invited_cubit.dart';
@@ -32,6 +33,9 @@ Future<void> setUp()async{
   );
   serviceLocator.registerFactory(
         () => HomeCubit(serviceLocator()),
+  );
+  serviceLocator.registerFactory(
+        () => ContactUsCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
         () => ProfileCubit(serviceLocator()),
@@ -61,7 +65,7 @@ Future<void> setUp()async{
         () => NotsentCubit(),
   );
   serviceLocator.registerFactory(
-        () => ScanCubit(),
+        () => ScanCubit(serviceLocator()),
   );
   ///////////////////////////////////////////////////////////////////////////////
 

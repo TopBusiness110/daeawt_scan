@@ -23,6 +23,7 @@ import 'dart:developer' as developer;
 import 'core/utils/toast_message_method.dart';
 import 'features/apology/cubit/appology_cubit.dart';
 import 'features/confirmed/cubit/confirmed_cubit.dart';
+import 'features/contact_us/presentation/cubit/contact_us_cubit.dart';
 import 'features/failed/presentation/cubit/faild_cubit.dart';
 import 'features/invited/presentation/cubit/invited_cubit.dart';
 import 'features/messages/presentation/cubit/messages_cubit.dart';
@@ -145,6 +146,9 @@ class _DawatScanState extends State<DawatScan> {
           ),
           BlocProvider(
             create: (_) => injector.serviceLocator<ScanCubit>(),
+          ),
+          BlocProvider(
+            create: (_) => injector.serviceLocator<ContactUsCubit>(),
           ),
         ],
 

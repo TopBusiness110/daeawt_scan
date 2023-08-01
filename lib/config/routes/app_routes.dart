@@ -7,6 +7,7 @@ import '../../core/models/user_model.dart';
 import '../../core/utils/app_strings.dart';
 import '../../features/apology/presentation/screens/apolory_screen.dart';
 import '../../features/confirmed/presentation/screens/confirmed_screen.dart';
+import '../../features/contact_us/presentation/screens/contact_us.dart';
 import '../../features/failed/presentation/screens/failed_screen.dart';
 import '../../features/home/screens/home_screen.dart';
 import '../../features/invited/presentation/screens/invited_screen.dart';
@@ -33,6 +34,8 @@ class Routes{
   static const String failedRoute = "/failedScreen";
   static const String notSentRoute = "/notSentScreen";
   static const String invitedRoute = "/invitedScreen";
+  static const String contactUsRoute = "/contactUsScreen";
+
 
 }
 
@@ -43,7 +46,8 @@ class AppRoutes{
 
     case Routes.initialRoute:
       return MaterialPageRoute(builder: (context) =>const SplashScreen(),);
-
+    case Routes.contactUsRoute:
+      return MaterialPageRoute(builder: (context) =>  const ContactUsScreen(),);
     case Routes.loginRoute:
       return MaterialPageRoute(builder: (context) =>const LoginScreen(),);
 

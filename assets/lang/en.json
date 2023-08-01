@@ -21,5 +21,16 @@
   "rate_app": "Rate App",
   "logout": "LogOut",
   "waiting": "Waiting",
-  "confirmed": "Confirmed"
+  "confirmed": "Confirmed",
+  "sub_occassion": "sub occasion",
+  "search": "Search",
+  "field_reguired": "Field Reguired",
+  "user_name": "username",
+  "phone": "phone",
+  "subject": "subject",
+  "send": "send",
+  "show_menu": "Show the scanned list",
+  "addocaation": "Add another occasion"
+
+
 }

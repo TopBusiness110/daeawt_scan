@@ -29,10 +29,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    HomeCubit cubit = context.read<HomeCubit>();
+
     var languageCode = easy.EasyLocalization
         .of(context)!
         .locale
         .languageCode;
+    return BlocBuilder<HomeCubit, HomeState>(
+  builder: (context, state) {
     return Scaffold(
       body: Column(
         //  physics: const AlwaysScrollableScrollPhysics(),
@@ -57,10 +61,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   //arrow back
 
                   Spacer(),
-                  const Text(
-                    "عيدميلاد",
+                   Text(
+                    cubit.userDataModel!.invitationModel!.title,
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 14,
                         fontWeight: FontWeight.w700,
                         color: Colors.white),
                   ).tr(),
@@ -114,7 +118,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
           BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
-              HomeCubit cubit = context.read<HomeCubit>();
               if (state is HomeLoading) {
                 return const ShowLoadingIndicator();
               } else {
@@ -198,14 +201,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         // cubit.detailsdata[index],
                                         style: TextStyle(
                                         color: AppColors.black1,
-                                        fontSize: 18,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w500),
                                   ),
                                   Text(
                                     cubit.detailsLabels[index],
                                     style: const TextStyle(
                                         color: AppColors.grey5,
-                                        fontSize: 18,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w500),
                                   ).tr(),
                                   ],
@@ -237,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
-                              fontSize: 18),
+                              fontSize: 14),
                         ),
                       ),
                       SizedBox(height: 20,),
@@ -253,6 +256,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
+  },
+);
     //     BlocConsumer<DetailsCubit, DetialsState>(
     //     // listener: (context, state) {
     //     //   // TODO: implement listener
@@ -299,7 +304,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //                     const Text(
     //                       AppStrings.occasionDetails,
     //                       style: TextStyle(
-    //                           fontSize: 18,
+    //                           fontSize: 14,
     //                           fontWeight: FontWeight.w700,
     //                           color: Colors.white),
     //                     ).tr(),
@@ -335,7 +340,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //                                           AppStrings.settings,
     //                                           style: TextStyle(
     //                                               fontWeight: FontWeight.w700,
-    //                                               fontSize: 17,
+    //                                               fontSize: 13,
     //                                               color: Colors.white),
     //                                         ).tr(),
     //                                         const Spacer(),
@@ -472,7 +477,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //                                   AppStrings.sendReminder,
     //                                   style: TextStyle(
     //                                       fontWeight: FontWeight.w700,
-    //                                       fontSize: 16),
+    //                                       fontSize: 12),
     //                                 ).tr(),
     //                               ),
     //                             ),
@@ -574,14 +579,14 @@ class _HomeScreenState extends State<HomeScreen> {
     //                                         cubit.detailsdata[index],
     //                                         style: const TextStyle(
     //                                             color: AppColors.black1,
-    //                                             fontSize: 18,
+    //                                             fontSize: 14,
     //                                             fontWeight: FontWeight.w500),
     //                                       ),
     //                                       Text(
     //                                         cubit.detailsLabels[index],
     //                                         style: const TextStyle(
     //                                             color: AppColors.grey5,
-    //                                             fontSize: 18,
+    //                                             fontSize: 14,
     //                                             fontWeight: FontWeight.w500),
     //                                       ).tr(),
     //                                     ],
@@ -610,7 +615,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //                     style: const TextStyle(
     //                         color: Colors.white,
     //                         fontWeight: FontWeight.w700,
-    //                         fontSize: 18),
+    //                         fontSize: 14),
     //                   ),
     //                 ),
     //                 const SizedBox(
@@ -633,7 +638,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //                         const Text(
     //                           AppStrings.occasionDetails,
     //                           style: TextStyle(
-    //                               fontSize: 16, fontWeight: FontWeight.w700),
+    //                               fontSize: 12, fontWeight: FontWeight.w700),
     //                         ).tr(),
     //                         !cubit.isBottomDetailsWidgetVisible
     //                             ? const Icon(
@@ -679,7 +684,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //                               Text(
     //                                  cubit.userDataModel!.invitationModel.date,
     //                                 style: const TextStyle(
-    //                                     fontSize: 16,
+    //                                     fontSize: 12,
     //                                     fontWeight: FontWeight.w400),
     //                               ),
     //                               const SizedBox(
@@ -712,7 +717,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //                           ),
     //                           Text( cubit.userDataModel!.invitationModel.title,
     //                               style: const TextStyle(
-    //                                   fontSize: 18, fontWeight: FontWeight.w700)),
+    //                                   fontSize: 14, fontWeight: FontWeight.w700)),
     //                           const SizedBox(
     //                             height: 5,
     //                           ),
@@ -752,12 +757,12 @@ class _HomeScreenState extends State<HomeScreen> {
     //         buttonPadding: const EdgeInsets.symmetric(horizontal: 2),
     //         title: const Text(
     //           AppStrings.areYouSureDeleteOccasion,
-    //           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+    //           style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
     //         ).tr(),
     //         content: Text( cubit.userDataModel!.invitationModel.title,
     //             textAlign: TextAlign.center,
     //             style:
-    //             const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+    //             const TextStyle(fontSize: 14, fontWeight: FontWeight.w700)),
     //         actions: <Widget>[
     //           Container(
     //             width: MediaQuery.of(context).size.width * 0.35,

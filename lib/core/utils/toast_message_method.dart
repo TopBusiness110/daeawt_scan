@@ -10,7 +10,7 @@ void toastMessage(String? message, context, {Color? color, int? duration = 0}) {
       timeInSecForIosWeb: 1,
       backgroundColor: color,
       textColor: Colors.white,
-      fontSize: 16.0,
+      fontSize: 12.0,
     );
   });
 }

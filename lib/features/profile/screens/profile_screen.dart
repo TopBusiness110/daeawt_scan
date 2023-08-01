@@ -1,6 +1,12 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_share/flutter_share.dart';
+import 'package:in_app_review/in_app_review.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../config/routes/app_routes.dart';
 import '../../../core/preferences/preferences.dart';
@@ -11,9 +17,22 @@ import '../../../core/widgets/manage_circle_network_image.dart';
 import '../../../core/widgets/my_svg_widget.dart';
 import '../cubit/profile_cubit.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  PackageInfo? packageInfo ;
+
+  final InAppReview inAppReview = InAppReview.instance;
+  @override
+  void initState() {
+    super.initState();
+    setuppackage();
+  }
   @override
   Widget build(BuildContext context) {
     String languageCode = EasyLocalization.of(context)!.currentLocale!.languageCode;
@@ -47,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
                         AppStrings.myAccount,
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 16,
+                            fontSize: 12,
                             fontWeight: FontWeight.w700),
                       ).tr(),
                       Transform.rotate(
@@ -162,8 +181,8 @@ class ProfileScreen extends StatelessWidget {
                             color: Colors.white,
                             shape: BoxShape.circle,
                             border: Border.all(color: AppColors.grey3, width: 3)),
-                        child:cubit.userModel==null||cubit.userModel!.user!.image.isEmpty? Image.asset(ImageAssests.profileImage):
-                        ManageCircleNetworkImage(imageUrl: cubit.userModel!.user!.image,
+                        child:cubit.userModel==null||cubit.userModel!.userModel!.user!.image.isEmpty? Image.asset(ImageAssests.profileImage):
+                        ManageCircleNetworkImage(imageUrl: cubit.userModel!.userModel!.user!.image,
                           height: 90,
                           width: 90,
                         ),
@@ -178,16 +197,16 @@ class ProfileScreen extends StatelessWidget {
 
                   Center(
                     child:  Text(
-                      cubit.userModel!=null?cubit.userModel!.user!.name:'',
+                      cubit.userModel!=null?cubit.userModel!.userModel!.user!.name:'',
                       style: TextStyle(
-                          fontWeight: FontWeight.w700, fontSize: 18),
+                          fontWeight: FontWeight.w700, fontSize: 14),
                     ),
                   ),
                   Center(
                     child:  Text(
-                      cubit.userModel!=null?cubit.userModel!.user!.phone:'',
+                      cubit.userModel!=null?cubit.userModel!.userModel!.user!.phone:'',
                       style: TextStyle(
-                          fontWeight: FontWeight.w400, fontSize: 18),
+                          fontWeight: FontWeight.w400, fontSize: 14),
                     ),
                   ),
                   Container(
@@ -203,8 +222,8 @@ class ProfileScreen extends StatelessWidget {
                         Border.all(width: 2, color: AppColors.grey3)),
                     child: InkWell(
                       onTap: () {
-                       // cubit.changeApplicationLanguage(context);
-                        // EasyLocalization.of(context)?.setLocale(Locale('en', ''));
+                        cubit.changeApplicationLanguage(context);
+                    //     EasyLocalization.of(context)?.setLocale(Locale('en', ''));
                       },
                       child: Row(
                         children: [
@@ -215,7 +234,7 @@ class ProfileScreen extends StatelessWidget {
                           const Text(
                             "language",
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w700),
+                                fontSize: 14, fontWeight: FontWeight.w700),
                           ).tr(),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.4,
@@ -229,7 +248,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                     // Navigator.pushNamed(context, Routes.contactUsRoute);
+                      Navigator.pushNamed(context, Routes.contactUsRoute);
                     },
                     child: Container(
                       margin: const EdgeInsets.symmetric(
@@ -251,7 +270,7 @@ class ProfileScreen extends StatelessWidget {
                           const Text(
                             "contact_us",
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w700),
+                                fontSize: 14, fontWeight: FontWeight.w700),
                           ).tr(),
                         ],
                       ),
@@ -259,7 +278,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                     // shareApp();
+                      shareApp();
                     },
                     child: Container(
                       margin: const EdgeInsets.symmetric(
@@ -281,7 +300,7 @@ class ProfileScreen extends StatelessWidget {
                           const Text(
                             "share_app",
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w700),
+                                fontSize: 14, fontWeight: FontWeight.w700),
                           ).tr(),
                         ],
                       ),
@@ -289,7 +308,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                    //  rateApp();
+                      rateApp();
                     },
                     child: Container(
                       margin: const EdgeInsets.symmetric(
@@ -311,7 +330,7 @@ class ProfileScreen extends StatelessWidget {
                           const Text(
                            "rate_app",
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w700),
+                                fontSize: 14, fontWeight: FontWeight.w700),
                           ).tr(),
                         ],
                       ),
@@ -344,7 +363,7 @@ class ProfileScreen extends StatelessWidget {
                           const Text(
                             "logout",
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w700),
+                                fontSize: 14, fontWeight: FontWeight.w700),
                           ).tr(),
                         ],
                       ),
@@ -357,9 +376,9 @@ class ProfileScreen extends StatelessWidget {
 
                         child: Image.asset(ImageAssests.facebookIcon),
                         onTap: () {
-                          // _openSocialUrl(
-                          //     url: cubit.setting!
-                          //         .data.facebook);
+                          _openSocialUrl(
+                              url: cubit.setting!
+                                  .data.facebook);
                         },
                       ),
                       const SizedBox(
@@ -367,9 +386,9 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       InkWell(
                           onTap: () {
-                            // _openSocialUrl(
-                            //     url: cubit.setting!
-                            //         .data.instagram);
+                            _openSocialUrl(
+                                url: cubit.setting!
+                                    .data.instagram);
                           },
                           child: Image.asset(ImageAssests.instagramIcon)),
                       const SizedBox(
@@ -377,9 +396,9 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       InkWell(
                           onTap: () {
-                            // _openSocialUrl(
-                            //     url: cubit.setting!
-                            //         .data.twitter);
+                            _openSocialUrl(
+                                url: cubit.setting!
+                                    .data.twitter);
                           },
                           child: Image.asset(ImageAssests.twitterIcon)),
                       const SizedBox(
@@ -387,9 +406,9 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       InkWell(
                           onTap: () {
-                            // _openSocialUrl(
-                            //     url: cubit.setting!
-                            //         .data.linkedin);
+                            _openSocialUrl(
+                                url: cubit.setting!
+                                    .data.linkedin);
                           },
                           child: Image.asset(ImageAssests.linkedInIcon)),
                     ],
@@ -423,12 +442,12 @@ class ProfileScreen extends StatelessWidget {
             //          const Text(
             //            'محمد محمد',
             //            style: TextStyle(
-            //                fontWeight: FontWeight.w700, fontSize: 18),
+            //                fontWeight: FontWeight.w700, fontSize: 14),
             //          ),
             //          const Text(
             //            '01030504268',
             //            style: TextStyle(
-            //                fontWeight: FontWeight.w400, fontSize: 18),
+            //                fontWeight: FontWeight.w400, fontSize: 14),
             //          ),
             //          Container(
             //            margin: const EdgeInsets.symmetric(
@@ -455,7 +474,7 @@ class ProfileScreen extends StatelessWidget {
             //                  const Text(
             //                    AppStrings.language,
             //                    style: TextStyle(
-            //                        fontSize: 18, fontWeight: FontWeight.w700),
+            //                        fontSize: 14, fontWeight: FontWeight.w700),
             //                  ).tr(),
             //                  SizedBox(
             //                    width: MediaQuery.of(context).size.width * 0.4,
@@ -491,7 +510,7 @@ class ProfileScreen extends StatelessWidget {
             //                  const Text(
             //                    AppStrings.contactUs,
             //                    style: TextStyle(
-            //                        fontSize: 18, fontWeight: FontWeight.w700),
+            //                        fontSize: 14, fontWeight: FontWeight.w700),
             //                  ).tr(),
             //                ],
             //              ),
@@ -517,7 +536,7 @@ class ProfileScreen extends StatelessWidget {
             //                const Text(
             //                  AppStrings.shareApp,
             //                  style: TextStyle(
-            //                      fontSize: 18, fontWeight: FontWeight.w700),
+            //                      fontSize: 14, fontWeight: FontWeight.w700),
             //                ).tr(),
             //              ],
             //            ),
@@ -542,7 +561,7 @@ class ProfileScreen extends StatelessWidget {
             //                const Text(
             //                  AppStrings.rateApp,
             //                  style: TextStyle(
-            //                      fontSize: 18, fontWeight: FontWeight.w700),
+            //                      fontSize: 14, fontWeight: FontWeight.w700),
             //                ).tr(),
             //              ],
             //            ),
@@ -572,7 +591,7 @@ class ProfileScreen extends StatelessWidget {
             //                  const Text(
             //                    AppStrings.logout,
             //                    style: TextStyle(
-            //                        fontSize: 18, fontWeight: FontWeight.w700),
+            //                        fontSize: 14, fontWeight: FontWeight.w700),
             //                  ).tr(),
             //                ],
             //              ),
@@ -629,4 +648,83 @@ class ProfileScreen extends StatelessWidget {
   },
 );
   }
+  void shareApp() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+    String url = '';
+    String packageName = packageInfo.packageName;
+
+    if (Platform.isAndroid) {
+      url = "https://play.google.com/store/apps/details?id=${packageName}";
+    } else if (Platform.isIOS) {
+      url = 'https://apps.apple.com/us/app/${packageName}';
+    }
+    await FlutterShare.share(title: "walaa", linkUrl: url);
+  }
+
+  Future<void> rateApp() async {
+
+    if (await inAppReview.isAvailable()) {
+      inAppReview.requestReview();
+    }
+
+    //
+    // RateMyApp rateMyApp = RateMyApp(
+    //  preferencesPrefix: 'rateMyApp_',
+    //  minDays: 0,
+    //  minLaunches: 1,
+    //  remindDays: 0,
+    //  remindLaunches: 1,
+    //
+    // );
+    //
+    // await rateMyApp.init().then((value) async =>
+    // {if(rateMyApp.shouldOpenDialog) {
+    //  rateMyApp.showRateDialog(
+    //
+    //   context,
+    //   title: 'Rate this app',
+    //   message: 'If you like this app, please take a little bit of your time to review it !\nIt really helps us and it shouldn\'t take you more than one minute.',
+    //   rateButton: 'RATE',
+    //   noButton: 'NO THANKS',
+    //   laterButton: 'MAYBE LATER',
+    //  )
+    // }
+    // else{
+    //   should=  (await rateMyApp.isNativeReviewDialogSupported)!,
+    //   if(should){
+    //    await rateMyApp.launchNativeReviewDialog()}
+    //   else{
+    //    rateMyApp.launchStore()
+    //   }
+    //   // print("ddkdkkdkdkjfj")
+    //  }});
+
+
+  }
+
+  Future<void> setuppackage() async {
+    packageInfo=   await PackageInfo.fromPlatform();
+
+  }
+  void _openSocialUrl({required String url}) async {
+    Uri uri = Uri.parse(url);
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri,
+          webViewConfiguration: const WebViewConfiguration(
+              enableJavaScript: true, enableDomStorage: true));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          'invalidUrl'.tr(),
+          style: const TextStyle(fontSize: 14.0),
+        ),
+        backgroundColor: AppColors.primary,
+        elevation: 8.0,
+        duration: const Duration(seconds: 3),
+      ));
+    }
+  }
+
 }

@@ -7,10 +7,16 @@ class ImageAssests{
   static const String splashRightCorner = "$imagePath/splash_right_corner.png";
   static const String askanDawat = "$imagePath/askan_deawat.png";
   static const String profileImage = "$imagePath/profile_image.png";
+  static const String contactUsImage = "$imagePath/contact_us_image.png";
+
   //*****************************************************************
   static const String messagesIcon = "$iconsPath/messages_icon.svg";
   static const String invitedIcon = "$iconsPath/invited_icon.svg";
   static const String scannedIcon = "$iconsPath/scanned_icon.svg";
+  static const String userNameIcon = "$iconsPath/user_name.png";
+  static const String phoneNumberIcon = "$iconsPath/phone_number.png";
+  static const String theTopicIcon = "$iconsPath/the_topic.png";
+  static const String theMessageIcon = "$iconsPath/the_message.png";
   static const String confirmedIcon = "$iconsPath/confirmed_icon.svg";
   static const String apologiesIcon = "$iconsPath/apologies_icon.svg";
   static const String waitingIcon = "$iconsPath/waiting_icon.svg";

@@ -21,6 +21,15 @@
   "rate_app": "قيم التطبيق",
   "logout": "تسجيل الخروج",
   "waiting": "انتظار",
-  "confirmed": "تأكيد"
+  "confirmed": "تأكيد",
+  "sub_occassion": "المناسبة الفرعية",
+  "search": "بحث",
+  "field_reguired": "الحقل مطلوب",
+  "user_name": "الاسم",
+  "phone": "رقم الجوال",
+  "subject": "المحتوى",
+  "send": "ارسال",
+  "show_menu": "اظهار القائمة الممسوحة ضوئيا",
+  "addocaation": "أضف مناسبة أخرى"
 
 }

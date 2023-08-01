@@ -53,14 +53,19 @@ class _LoginScreenState extends State<LoginScreen> {
                           padding: const EdgeInsets.only(left: 20, bottom: 10),
                           height: 300,
                           //color: Colors.orange,
-                          child: Image.asset(
-                            ImageAssests.askanDawat,
+                          child:  Center(
+                            child: Text("askan_dawat".tr(),
+                              textAlign: TextAlign.center,style: TextStyle(
+                                  color: AppColors.primary,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold
+                              ),),
                           )),
                     ),
                   ),
                   const Text(
                     AppStrings.login,
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
                   ).tr(),
                   const SizedBox(
                     height: 15,
