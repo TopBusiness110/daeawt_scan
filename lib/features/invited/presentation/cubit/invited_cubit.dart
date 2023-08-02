@@ -23,11 +23,17 @@ class InvitedCubit extends Cubit<InvitedState> {
 
     print("dlflfllf");
     print(inviteess.length);
-    for (Invitee userDetail in inviteess) {
-      print(text+"dddd");
-      if (userDetail.name.toLowerCase().contains(text.toLowerCase())){
-        invitees.add(userDetail);
-    }}
+    if(text.isEmpty){
+      invitees.addAll(inviteess);
+    }
+    else{
+      for (Invitee userDetail in inviteess) {
+        print(text+"dddd");
+
+        if (userDetail.name.toLowerCase().contains(text.toLowerCase()))
+          invitees.add(userDetail);
+      }
+    }
     emit(InvitedLoaded());
 
   }

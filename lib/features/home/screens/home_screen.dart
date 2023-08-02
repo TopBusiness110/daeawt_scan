@@ -92,12 +92,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Positioned(
 
-                      child: const CircleAvatar(
-                        radius: 20,
-                        backgroundColor: AppColors.primary,
+                      child:  Container(
+                        width: 30,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: AppColors.primary,
+                          shape: BoxShape.circle
+                        ),
                       ),
-                      left: languageCode=='en'?4:null,
-                      right: languageCode=='ar'?4:null,
+                      left: languageCode=='en'?0:null,
+                      right: languageCode=='ar'?0:null,
                     ),
                      Text(
                       "report".tr(),

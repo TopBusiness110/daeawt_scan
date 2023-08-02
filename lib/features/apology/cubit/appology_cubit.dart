@@ -22,10 +22,16 @@ class AppologyCubit extends Cubit<AppologyState> {
 
     print("dlflfllf");
     print(inviteess.length);
+    if(text.isEmpty){
+     invitees.addAll(inviteess);
+    }
+    else{
     for (Invitee userDetail in inviteess) {
       print(text+"dddd");
+
       if (userDetail.name.toLowerCase().contains(text.toLowerCase()))
         invitees.add(userDetail);
+    }
     }
     emit(AppologyLoaded());
 
