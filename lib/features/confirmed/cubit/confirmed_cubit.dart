@@ -24,7 +24,7 @@ class ConfirmedCubit extends Cubit<ConfirmedState> {
     print(inviteess.length);
     for (Invitee userDetail in inviteess) {
       print(text+"dddd");
-      if (userDetail.name.contains(text) )
+      if (userDetail.name.toLowerCase().contains(text.toLowerCase()))
         invitees.add(userDetail);
     }
     emit(ConfirmedLoaded());

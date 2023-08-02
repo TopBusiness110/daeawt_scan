@@ -80,6 +80,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+          const SizedBox(height: 20,),
+
           //تفاصيل المناسبة
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -256,6 +258,8 @@ class _HomeScreenState extends State<HomeScreen> {
               }
             },
           ),
+
+          const SizedBox(height: 20,),
 
 
         ],
