@@ -8,12 +8,12 @@ part 'invited_state.dart';
 
 class InvitedCubit extends Cubit<InvitedState> {
   InvitedCubit() : super(InvitedInitial());
-  List<Invitee> invitees=[];
-  List<Invitee> inviteess=[];
+  List<Invitees> invitees=[];
+  List<Invitees> inviteess=[];
   void setdata(InvitationModel homeListItemModel) {
     inviteess.clear();
-    invitees=homeListItemModel.invitees;
-    inviteess.addAll(homeListItemModel.invitees);
+    invitees=homeListItemModel.invitees!;
+    inviteess.addAll(homeListItemModel.invitees!);
 
     emit(InvitedLoaded());
   }
@@ -27,10 +27,10 @@ class InvitedCubit extends Cubit<InvitedState> {
       invitees.addAll(inviteess);
     }
     else{
-      for (Invitee userDetail in inviteess) {
+      for (Invitees userDetail in inviteess) {
         print(text+"dddd");
 
-        if (userDetail.name.toLowerCase().contains(text.toLowerCase()))
+        if (userDetail.name!.toLowerCase().contains(text.toLowerCase()))
           invitees.add(userDetail);
       }
     }

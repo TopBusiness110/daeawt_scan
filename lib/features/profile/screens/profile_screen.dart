@@ -179,8 +179,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             color: Colors.white,
                             shape: BoxShape.circle,
                             border: Border.all(color: AppColors.grey3, width: 3)),
-                        child:cubit.userModel==null||cubit.userModel!.userModel!.user!.image.isEmpty? Image.asset(ImageAssests.profileImage):
-                        ManageCircleNetworkImage(imageUrl: cubit.userModel!.userModel!.user!.image,
+                        child:cubit.userModel==null||cubit.userModel!.userModel!.user!.image!.isEmpty? Image.asset(ImageAssests.profileImage):
+                        ManageCircleNetworkImage(imageUrl: cubit.userModel!.userModel!.user!.image!,
                           height: 90,
                           width: 90,
                         ),
@@ -195,14 +195,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   Center(
                     child:  Text(
-                      cubit.userModel!=null?cubit.userModel!.userModel!.user!.name:'',
+                      cubit.userModel!=null?cubit.userModel!.userModel!.user!.name!:'',
                       style: TextStyle(
                           fontWeight: FontWeight.w700, fontSize: 14),
                     ),
                   ),
                   Center(
                     child:  Text(
-                      cubit.userModel!=null?cubit.userModel!.userModel!.user!.phone:'',
+                      cubit.userModel!=null?cubit.userModel!.userModel!.user!.phone!:'',
                       style: TextStyle(
                           fontWeight: FontWeight.w400, fontSize: 14),
                     ),

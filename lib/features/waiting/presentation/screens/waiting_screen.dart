@@ -117,7 +117,7 @@ class _WaitingScreenState extends State<WaitingScreen> {
                                   ),
                                 ),
                                 Text(
-                                  cubit.invitees.elementAt(index).name ,
+                                   cubit.invitees.elementAt(index).name! ,
                                   style: const TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 20

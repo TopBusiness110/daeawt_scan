@@ -36,14 +36,14 @@ class ScanCubit extends Cubit<ScanState> {
     response.fold(
       (failure) => {Navigator.pop(context), emit(LoginFailure())},
       (loginModel) {
-        if (loginModel.code == 406 || loginModel.code == 410) {
+        if (loginModel!.code == 406 || loginModel!.code == 410) {
           Navigator.pop(context);
           toastMessage("no_invitation".tr(), context);
           // errorGetBar(translateText(AppStrings.noEmailError, context));
           emit(LoginLoaded());
         } else if (loginModel.code == 200) {
           Navigator.pop(context);
-          Preferences.instance.setUser(loginModel.data).then((value) {
+          Preferences.instance.setUser(loginModel!.data!).then((value) {
             Navigator.pop(context);
             context.read<HomeCubit>().getuserData();
 

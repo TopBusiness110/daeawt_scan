@@ -110,7 +110,9 @@ class _InvitedScreenState extends State<InvitedScreen> {
                                             fontSize: 20),
                                       ),
                                       Text(
-                                        cubit.invitees.elementAt(index).name.length==10?cubit.invitees.elementAt(index).name:cubit.invitees.elementAt(index).name.replaceRange(9,  cubit.invitees.elementAt(index).name.length,""),
+                                         cubit.invitees.elementAt(index).name!.length==10?
+                                         cubit.invitees.elementAt(index).name!:
+                                         cubit.invitees.elementAt(index).name!.replaceRange(9,   cubit.invitees.elementAt(index).name!.length,""),
 overflow: TextOverflow.ellipsis,
 
                                         style: const TextStyle(

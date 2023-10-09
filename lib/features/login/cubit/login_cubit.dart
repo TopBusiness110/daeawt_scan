@@ -36,11 +36,11 @@ class LoginCubit extends Cubit<LoginState> {
           emit(LoginLoaded());
         } else if (loginModel.code == 200) {
           Navigator.pop(context);
-          Preferences.instance.setUser(loginModel.data).then((value) {
+          Preferences.instance.setUser(loginModel.data!).then((value) {
             Navigator.pushNamedAndRemoveUntil(context, Routes.homeRoute, (route) => false);
             // emit(OnLoginSuccess(response));
           });
-        }
+        }else{}
       },
     );
   }

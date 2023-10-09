@@ -8,12 +8,12 @@ part 'waiting_state.dart';
 
 class WaitingCubit extends Cubit<WaitingState> {
   WaitingCubit() : super(WaitingInitial());
-  List<Invitee> invitees=[];
-  List<Invitee> inviteess=[];
+  List<Invitees> invitees=[];
+  List<Invitees> inviteess=[];
   void setdata(InvitationModel homeListItemModel) {
     inviteess.clear();
-    invitees=homeListItemModel.allWaiting;
-    inviteess.addAll(homeListItemModel.allWaiting);
+    invitees=homeListItemModel.allWaiting!;
+    inviteess.addAll(homeListItemModel.allWaiting!);
 
     emit(WaitingLoaded());
   }
@@ -26,10 +26,10 @@ class WaitingCubit extends Cubit<WaitingState> {
       invitees.addAll(inviteess);
     }
     else{
-      for (Invitee userDetail in inviteess) {
+      for (Invitees userDetail in inviteess) {
         print(text+"dddd");
 
-        if (userDetail.name.toLowerCase().contains(text.toLowerCase()))
+        if (userDetail.name!.toLowerCase().contains(text.toLowerCase()))
           invitees.add(userDetail);
       }
     }

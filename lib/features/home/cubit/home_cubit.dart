@@ -31,7 +31,7 @@ getuserData() async {
 
     detailsdata.clear();
     detailsdata.add(homeListItemModel.messages.toString());
-    detailsdata.add(homeListItemModel.invitees.length.toString());
+    detailsdata.add(homeListItemModel.invitees!.length.toString());
     detailsdata.add(homeListItemModel.scanned.toString());
     detailsdata.add(homeListItemModel.confirmed.toString());
     detailsdata.add(homeListItemModel.apologized.toString());

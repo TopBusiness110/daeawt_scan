@@ -116,7 +116,7 @@ class _FailedScreenState extends State<FailedScreen> {
                                       fontSize: 20
                                   ),
                                 ),
-                                Text(  cubit.invitees.elementAt(index).name ,
+                                Text(  cubit.invitees.elementAt(index).name!,
                                   style: const TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 20

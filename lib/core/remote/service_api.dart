@@ -42,7 +42,6 @@ class ServiceApi{
           headers: {'Authorization': loginModel.userModel!.accessToken!},
         ),
         EndPoints.scanUrl,
-        formDataIsEnabled: true,
         body: {
           'invitation_id':loginModel.invitationModel!.id,
           'invitee_id':inviteeId

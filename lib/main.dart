@@ -18,17 +18,15 @@ Future<void> main() async {
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
   // await PushNotificationService.instance.initialise();
-  await FlutterWindowManager.clearFlags(FlutterWindowManager.FLAG_SECURE);
+  // await FlutterWindowManager.clearFlags(FlutterWindowManager.FLAG_SECURE);
   // await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE)
   //     .then((value) {
   //   print('************************************************');
   //   print(value);
   //   print('************************************************');
   // });
-
   // await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
   //AppColors.getPrimaryColor();
-
   // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   // await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
   //   alert: true,

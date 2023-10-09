@@ -8,12 +8,12 @@ part 'scanned_state.dart';
 
 class ScannedCubit extends Cubit<ScannedState> {
   ScannedCubit() : super(ScannedInitial());
-  List<Invitee> invitees=[];
-  List<Invitee> inviteess=[];
+  List<Invitees> invitees=[];
+  List<Invitees> inviteess=[];
   void setdata(InvitationModel homeListItemModel) {
     inviteess.clear();
-    invitees=homeListItemModel.allScanned;
-    inviteess.addAll(homeListItemModel.allScanned);
+    invitees=homeListItemModel.allScanned!;
+    inviteess.addAll(homeListItemModel.allScanned!);
 
     emit(ScannedLoaded());
   }
@@ -26,10 +26,10 @@ class ScannedCubit extends Cubit<ScannedState> {
       invitees.addAll(inviteess);
     }
     else{
-      for (Invitee userDetail in inviteess) {
+      for (Invitees userDetail in inviteess) {
         print(text+"dddd");
 
-        if (userDetail.name.toLowerCase().contains(text.toLowerCase()))
+        if (userDetail.name!.toLowerCase().contains(text.toLowerCase()))
           invitees.add(userDetail);
       }
     }

@@ -8,12 +8,12 @@ part 'faild_state.dart';
 
 class FaildCubit extends Cubit<FaildState> {
   FaildCubit() : super(FaildInitial());
-  List<Invitee> invitees=[];
-  List<Invitee> inviteess=[];
+  List<Invitees> invitees=[];
+  List<Invitees> inviteess=[];
   void setdata(InvitationModel homeListItemModel) {
     inviteess.clear();
-    invitees=homeListItemModel.allFailed;
-    inviteess.addAll(homeListItemModel.allFailed);
+    invitees=homeListItemModel.allFailed!;
+    inviteess.addAll(homeListItemModel.allFailed!);
 
     emit(FaildLoaded());
   }
@@ -26,10 +26,10 @@ class FaildCubit extends Cubit<FaildState> {
       invitees.addAll(inviteess);
     }
     else{
-      for (Invitee userDetail in inviteess) {
+      for (Invitees userDetail in inviteess) {
         print(text+"dddd");
 
-        if (userDetail.name.toLowerCase().contains(text.toLowerCase()))
+        if (userDetail.name!.toLowerCase().contains(text.toLowerCase()))
           invitees.add(userDetail);
       }
     }

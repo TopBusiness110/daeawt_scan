@@ -8,12 +8,12 @@ part 'notsent_state.dart';
 
 class NotsentCubit extends Cubit<NotsentState> {
   NotsentCubit() : super(NotsentInitial());
-  List<Invitee> invitees=[];
-  List<Invitee> inviteess=[];
+  List<Invitees> invitees=[];
+  List<Invitees> inviteess=[];
   void setdata(InvitationModel homeListItemModel) {
     inviteess.clear();
-    invitees=homeListItemModel.allNotSent;
-    inviteess.addAll(homeListItemModel.allNotSent);
+    invitees=homeListItemModel.allNotSent!;
+    inviteess.addAll(homeListItemModel.allNotSent!);
 
     emit(NotSendLoaded());
   }
@@ -26,10 +26,10 @@ class NotsentCubit extends Cubit<NotsentState> {
       invitees.addAll(inviteess);
     }
     else{
-      for (Invitee userDetail in inviteess) {
+      for (Invitees userDetail in inviteess) {
         print(text+"dddd");
 
-        if (userDetail.name.toLowerCase().contains(text.toLowerCase()))
+        if (userDetail.name!.toLowerCase().contains(text.toLowerCase()))
           invitees.add(userDetail);
       }
     }

@@ -8,12 +8,12 @@ part 'confirmed_state.dart';
 
 class ConfirmedCubit extends Cubit<ConfirmedState> {
   ConfirmedCubit() : super(ConfirmedInitial());
-  List<Invitee> invitees=[];
-  List<Invitee> inviteess=[];
+  List<Invitees> invitees=[];
+  List<Invitees> inviteess=[];
   void setdata(InvitationModel homeListItemModel) {
     inviteess.clear();
-    invitees=homeListItemModel.allConfirmed;
-    inviteess.addAll(homeListItemModel.allConfirmed);
+    invitees=homeListItemModel.allConfirmed!;
+    inviteess.addAll(homeListItemModel.allConfirmed!);
 
     emit(ConfirmedLoaded());
   }
@@ -26,10 +26,10 @@ class ConfirmedCubit extends Cubit<ConfirmedState> {
       invitees.addAll(inviteess);
     }
     else{
-      for (Invitee userDetail in inviteess) {
+      for (Invitees userDetail in inviteess) {
         print(text+"dddd");
 
-        if (userDetail.name.toLowerCase().contains(text.toLowerCase()))
+        if (userDetail.name!.toLowerCase().contains(text.toLowerCase()))
           invitees.add(userDetail);
       }
     }

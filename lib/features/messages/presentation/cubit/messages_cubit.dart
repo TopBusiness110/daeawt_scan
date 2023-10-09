@@ -15,12 +15,12 @@ class MessagesCubit extends Cubit<MessagesState> {
     isVisible = !isVisible;
     emit(ChangingVisibilityState());
   }
-  List<Invitee> invitees=[];
-  List<Invitee> inviteess=[];
+  List<Invitees> invitees=[];
+  List<Invitees> inviteess=[];
   void setdata(InvitationModel homeListItemModel) {
     inviteess.clear();
-    invitees=homeListItemModel.inviteesMessages;
-    inviteess.addAll(homeListItemModel.inviteesMessages);
+    invitees=homeListItemModel.inviteesMessages!;
+    inviteess.addAll(homeListItemModel.inviteesMessages!);
 
     emit(MessageLoaded());
   }
@@ -33,10 +33,10 @@ class MessagesCubit extends Cubit<MessagesState> {
       invitees.addAll(inviteess);
     }
     else{
-      for (Invitee userDetail in inviteess) {
+      for (Invitees userDetail in inviteess) {
         print(text+"dddd");
 
-        if (userDetail.name.toLowerCase().contains(text.toLowerCase()))
+        if (userDetail.name!.toLowerCase().contains(text.toLowerCase()))
           invitees.add(userDetail);
       }
     }

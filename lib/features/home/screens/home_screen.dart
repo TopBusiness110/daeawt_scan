@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   Spacer(),
                    Text(
-                     cubit.userDataModel!=null? cubit.userDataModel!.invitationModel!.title:"",
+                     cubit.userDataModel!=null? cubit.userDataModel!.invitationModel!.title!:"",
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,

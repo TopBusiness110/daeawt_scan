@@ -91,7 +91,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                                     fontSize: 20
                                 ),
                               ),
-                              Text(cubit.invitees.elementAt(index).name , style: const TextStyle(
+                              Text( cubit.invitees.elementAt(index).name! , style: const TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 20
                               ),),
@@ -123,7 +123,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
 
                             ListView.builder(
                             itemBuilder: (context, index1) {
-                              return  Text(cubit.invitees.elementAt(index).messages!.elementAt(index1).message);
+                              return  Text(cubit.invitees.elementAt(index).messages!.elementAt(index1).message!);
                             },
                               itemCount: cubit.invitees.elementAt(index).messages!.length,
                               shrinkWrap: true,
