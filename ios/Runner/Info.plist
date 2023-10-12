@@ -48,7 +48,7 @@
         	<key>LSRequiresIPhoneOS</key>
         	<true/>
         	<key>NSCameraUsageDescription</key>
-        	<string>The Camera will be used if you would like to update profile picture and share photos.</string>
+        	<string>The Camera will be used if you would like to scan Qr Codes .</string>
         	<key>NSMicrophoneUsageDescription</key>
         	<string>flutter pub run flutter_launcher_iconsTo capture audio for pick image plugin</string>
         	<key>NSPhotoLibraryUsageDescription</key>
