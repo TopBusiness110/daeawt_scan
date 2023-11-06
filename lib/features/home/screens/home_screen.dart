@@ -26,7 +26,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
+bool isLoading = true;
   @override
   Widget build(BuildContext context) {
     HomeCubit cubit = context.read<HomeCubit>();
@@ -35,10 +35,19 @@ class _HomeScreenState extends State<HomeScreen> {
         .of(context)!
         .locale
         .languageCode;
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocConsumer<HomeCubit, HomeState>(
+      listener: (context, state) {
+        if (state is DetialsLoading){
+          isLoading = true;
+        }
+        else{
+          isLoading = false;
+        }
+      },
   builder: (context, state) {
     return Scaffold(
-      body: Column(
+      body:isLoading?const Center(child: CircularProgressIndicator(),):
+      Column(
         //  physics: const AlwaysScrollableScrollPhysics(),
         children: [
           ClipPath(
@@ -153,6 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 childAspectRatio: 2.1 / 2,
                                 //horizontal spaces
                                 crossAxisSpacing: 15,
+
                                 // vertical spaces
                                 mainAxisSpacing: 10),
                             itemBuilder: (context, index) {
@@ -210,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                      Text(cubit.detailsdata[index],
 
                                         // cubit.detailsdata[index],
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                         color: AppColors.black1,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500),

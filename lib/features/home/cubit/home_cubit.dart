@@ -28,7 +28,7 @@ getuserData() async {
     AppStrings.confirmation,AppStrings.apologies,AppStrings.wait,AppStrings.notSent,AppStrings.failed];
   List<String> detailsdata = [];
   void setdata(InvitationModel homeListItemModel) {
-
+emit(DetialsLoading());
     detailsdata.clear();
     detailsdata.add(homeListItemModel.messages.toString());
     detailsdata.add(homeListItemModel.invitees!.length.toString());
@@ -38,6 +38,8 @@ getuserData() async {
     detailsdata.add(homeListItemModel.waiting.toString());
     detailsdata.add(homeListItemModel.notSent.toString());
     detailsdata.add(homeListItemModel.failed.toString());
+    print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+    print(detailsdata);
     emit(DetialsLoaded());
 
   }

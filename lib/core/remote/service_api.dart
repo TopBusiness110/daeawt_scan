@@ -31,7 +31,7 @@ class ServiceApi{
       return Left(ServerFailure());
     }
   }
-  Future<Either<Failure, StatusResponse>> ScanIvitation(int  inviteeId) async {
+  Future<Either<Failure, StatusResponse>> ScanIvitation(String  inviteeId) async {
     try {
       print(";;;;");
      // print(invitationModel.step);

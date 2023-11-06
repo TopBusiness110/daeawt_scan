@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:daeawt_scan/config/routes/app_routes.dart';
 import 'package:daeawt_scan/features/home/cubit/home_cubit.dart';
@@ -5,6 +7,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:crypto/crypto.dart';
 
 import '../../../core/models/user_model.dart';
 import '../../../core/preferences/preferences.dart';
@@ -69,7 +72,20 @@ class ScanCubit extends Cubit<ScanState> {
 
   Future<void> scanData(BuildContext context, String? code) async {
     AppWidget.createProgressDialog(context, 'wait'.tr());
-    final response = await api.ScanIvitation(int.parse(code!));
+    print("***************************************");
+    print("code = $code ");
+    // String uuidStr = code!;
+    // // Remove hyphens and convert the UUID string to bytes
+    // List<int> uuidBytes = utf8.encode(uuidStr.replaceAll('-', ''));
+    //
+    // // Hash the bytes using a cryptographic hash function (SHA-256)
+    // Digest digest = sha256.convert(uuidBytes);
+    //
+    // // Convert the digest to a numeric value
+    // BigInt numericValue = BigInt.parse(digest.toString(), radix: 16);
+    //
+    // print(numericValue);
+    final response = await api.ScanIvitation(code!);
     response.fold(
           (failure) => {Navigator.pop(context), emit(LoginFailure())},
           (loginModel) {
@@ -81,9 +97,13 @@ class ScanCubit extends Cubit<ScanState> {
         } else if (loginModel.code == 200) {
           Navigator.pop(context);
          toastMessage("success".tr(), context);
+          emit(LoginFailure());
         }
         else{
+          Navigator.pop(context);
           toastMessage("invitation_not_found".tr(), context);
+          toastMessage("no_invitation".tr(), context);
+          emit(LoginFailure());
 
         }
       },
